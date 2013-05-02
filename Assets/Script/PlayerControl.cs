@@ -6,12 +6,14 @@ public class PlayerControl : MonoBehaviour {
 	
 	private GameObject  _PlayerPad;
 	private GameManager _GameManager;
+	private PadManager  _PadManager;
 	private int _gameState;
 	
-	private float _playerPadSpeed = 0.2f;
+	private float _playerPadSpeed = 10.0f;
 	// Use this for initialization
 	void Start () {
 		_GameManager = GetComponent<GameManager>();
+		_PadManager = GetComponent<PadManager>();
 	}
 	
 	// Update is called once per frame
@@ -30,14 +32,14 @@ public class PlayerControl : MonoBehaviour {
 	void getKeyboardInputs()
 	{
 		
-		if(Input.GetKey(KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow))
+		if(Input.GetKey(KeyCode.W) || Input.GetKey (KeyCode.UpArrow))
 		{
-			_PlayerPad.transform.Translate (0.0f, _playerPadSpeed, 0.0f);
+			_PadManager.TranslatePad (_PlayerPad, _playerPadSpeed);
 		}
 		
-		if(Input.GetKey(KeyCode.S) || Input.GetKeyDown (KeyCode.DownArrow))
+		if(Input.GetKey(KeyCode.S) || Input.GetKey (KeyCode.DownArrow))
 		{
-			_PlayerPad.transform.Translate (0.0f, -_playerPadSpeed, 0.0f);
+			_PadManager.TranslatePad (_PlayerPad, -_playerPadSpeed);
 		}
 		
 	}

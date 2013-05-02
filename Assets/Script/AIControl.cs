@@ -1,3 +1,6 @@
+/// <summary>
+/// This script is responsible of the AI of the paddle
+/// </summary>
 using UnityEngine;
 using System.Collections;
 
@@ -6,12 +9,16 @@ public class AIControl : MonoBehaviour {
 	private GameObject  _AIPad;
 	private GameObject  _Ball;
 	private GameManager _GameManager;
+	private PadManager  _PadManager;
+	private LevelManager _LevelManager;
 	private int _gameState;
-	private float _AIPadSpeed = 0.1f;
+	private float _AIPadSpeed = 2.5f;
 	
 	// Use this for initialization
 	void Start () {
-		_GameManager = GetComponent<GameManager>();
+		_GameManager  = GetComponent<GameManager>();
+		_PadManager   = GetComponent<PadManager>();
+		_LevelManager = GetComponent<LevelManager>();
 	}
 	
 	// Update is called once per frame
@@ -26,17 +33,11 @@ public class AIControl : MonoBehaviour {
 		}	
 	}
 	
-	public void iniAI()
-	{
-		FindBall();
-	}
-	
-	void FindBall()
+	public void IniAI()
 	{
 		_Ball = GameObject.FindGameObjectWithTag("Ball"); 
 		if(_Ball == null) {Debug.LogError("AIControl E02 - Ball not found");} 
 	}
-	
 	
 	void getAIInput()
 	{
@@ -45,12 +46,12 @@ public class AIControl : MonoBehaviour {
 		
 		if(_deltaY > 0.1f)
 		{
-			_AIPad.transform.Translate (0.0f, _AIPadSpeed, 0.0f);
+			_PadManager.TranslatePad (_AIPad, _AIPadSpeed);
 		}
 		
 		else if(_deltaY < -0.1f)
 		{
-			_AIPad.transform.Translate (0.0f, -_AIPadSpeed, 0.0f);
+			_PadManager.TranslatePad (_AIPad, -_AIPadSpeed);
 		}
 	}
 	
