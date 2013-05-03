@@ -8,8 +8,16 @@ using System.Collections;
 
 public class BallManager : MonoBehaviour {
 	
+	public AudioClip PongBeep1Sound;
+	public AudioClip PongBeep2Sound;
+	public AudioClip WallBeep1Sound;
 	float limitAngle = 0.5f;
-
+	
+	// On Collision with walls, play sound
+	void OnCollisionEnter()
+	{
+		audio.PlayOneShot (WallBeep1Sound);
+	}
 	
 	// Change ball direction when it collide with pads.
 	void OnTriggerEnter(Collider _Collided)
@@ -36,10 +44,12 @@ public class BallManager : MonoBehaviour {
 		if(transform.rigidbody.velocity.x < 0.0f)
 		{
 			rigidbody.velocity = new Vector3(_newVelX, _newVelY, 0.0f);
+			audio.PlayOneShot (PongBeep1Sound);
 		}
 		else if(transform.rigidbody.velocity.x > 0.0f)
 		{
 			rigidbody.velocity = new Vector3(-_newVelX, _newVelY, 0.0f);
+			audio.PlayOneShot (PongBeep2Sound);
 		}
 	}	
 }

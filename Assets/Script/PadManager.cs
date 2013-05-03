@@ -11,15 +11,10 @@ public class PadManager : MonoBehaviour
 	private GameObject _TopWall;
 	private GameObject _BotWall;
 	
-	void Start()
-	{
-		
-		
-	}
-	
 	public void IniPadManag()
 	{
 		FindTopAndBotWall();	
+		
 	}
 			
 	// Find the Top and Bottom Wall from their tag. This is used to limit the pad movement

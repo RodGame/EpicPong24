@@ -12,7 +12,7 @@ public class AIControl : MonoBehaviour {
 	private PadManager  _PadManager;
 	private LevelManager _LevelManager;
 	private int _gameState;
-	private float _AIPadSpeed = 2.5f;
+	private float _AIPadSpeed;
 	
 	// Use this for initialization
 	void Start () {
@@ -37,12 +37,12 @@ public class AIControl : MonoBehaviour {
 	{
 		_Ball = GameObject.FindGameObjectWithTag("Ball"); 
 		if(_Ball == null) {Debug.LogError("AIControl E02 - Ball not found");} 
+		_AIPadSpeed = _LevelManager.curLevel.AIPadSpeed;
 	}
 	
 	void getAIInput()
 	{
 		float _deltaY = _Ball.transform.position.y - _AIPad.transform.position.y; // Distance on Y axis between ball and AIPad
-		
 		
 		if(_deltaY > 0.1f)
 		{

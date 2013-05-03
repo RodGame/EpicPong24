@@ -8,12 +8,17 @@ public class PlayerControl : MonoBehaviour {
 	private GameManager _GameManager;
 	private PadManager  _PadManager;
 	private int _gameState;
+	private float  _playerPadSpeed;
 	
-	private float _playerPadSpeed = 10.0f;
 	// Use this for initialization
 	void Start () {
 		_GameManager = GetComponent<GameManager>();
 		_PadManager = GetComponent<PadManager>();
+	}
+	
+	public void IniPlayCont()
+	{
+		_playerPadSpeed = _GameManager.Player.PadSpeed;	
 	}
 	
 	// Update is called once per frame
